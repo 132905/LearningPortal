@@ -94,6 +94,20 @@ public class UserController {
 
 	}
 
+	//User Validation
+	@GetMapping("/login_")
+	public String login(@RequestBody LogInEntity log) {
+		//finding the user
+		UserEntity user=userService.findByusername(log.getUsername());
+		
+		//if user exists
+		if(user!=null && BCrypt.checkpw(log.getPassword(), user.getPassword())) {
+			return "Successfully loggedIn";
+		}
+		
+		return "Null";
+	}
+
 	//PURCHASE COURSE
 	@PostMapping("/purchase/{userId}/{courseId}")
 	public RegisteredCourseDTO purchaseCourse(@PathVariable Long userId, @PathVariable Long courseId) {
