@@ -43,4 +43,6 @@ public interface UserService {
 	//see favorite courses
 	List<FavouriteCourseEntity> seeFavouriteCourses(Long userId);
 
+	 UserEntity findByusername(String name);
+
 }
